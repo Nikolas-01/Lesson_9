@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import card_game_fool as fool
 
 game=fool.Game()
