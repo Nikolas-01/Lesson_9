@@ -1,7 +1,6 @@
 import random
-
 class Deck:
-    ranks = [str(n) for n in range(6, 11)] + list('JQKA')
+    ranks = [str(n) for n in range(6, 11)] + list('ВДКТ')  # В - валет Д - дама К - король Т - туз
     suits = 'spades diamonds clubs hearts'.split()
 
     def __init__(self):
@@ -30,11 +29,7 @@ class Deck:
 
     def list_card(self):
         self.list_num_card = [int(i) for i in range(0, 36)]
-        # print(deck._cards)
-        # print('list_num_card', self.list_num_card)
-        # for i in self.list_num_card:
-        #     print('КАРТа после ПЕРЕМЕШИВАНИЯ', deck._cards[i], self.list_num_card[i])
-        # print(self.list_num_card)
+
         return self.list_num_card
 
 
@@ -51,7 +46,7 @@ class Deck:
             card_pl_number.append(a)
             self.cards_pl.append(deck[a])
             self.list_num_card.remove(a)
-        # print('карты игрока cards_pl', self.cards_pl, card_pl_number)
+
 
 
     def computer_hand(self):
