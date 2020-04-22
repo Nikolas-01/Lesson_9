@@ -1,7 +1,7 @@
 import random
 class Deck:
     ranks = [str(n) for n in range(6, 11)] + list('ВДКТ')  # В - валет Д - дама К - король Т - туз
-    suits = 'spades diamonds clubs hearts'.split()
+    suits = 'пики бубны трефы червы'.split()
 
     def __init__(self):
         self._cards = [(rank, suit) for suit in self.suits
@@ -22,10 +22,10 @@ class Deck:
         if x == '8' : return 8
         if x == '9' : return 9
         if x == '10': return 10
-        if x == 'J' : return 11
-        if x == 'Q' : return 12
-        if x == 'K' : return 13
-        if x == 'A' : return 14
+        if x == 'В' : return 11
+        if x == 'Д' : return 12
+        if x == 'К' : return 13
+        if x == 'Т' : return 14
 
     def list_card(self):
         self.list_num_card = [int(i) for i in range(0, 36)]
@@ -37,7 +37,7 @@ class Deck:
         self.pl_c = random.choice(self.list_num_card)
         return self.pl_c
 
-    # Раздача игроку
+    # Выдача игроку
     def player_hand(self):
         self.cards_pl = []
         card_pl_number = []
@@ -57,7 +57,7 @@ class Deck:
             cards_comp_number.append(b)
             self.cards_comp.append(deck[b])
             self.list_num_card.remove(b)
-        # print('карты компа cards_comp', self.cards_comp, cards_comp_number)
+        # print('карты ПК cards_comp', self.cards_comp, cards_comp_number)
         # print("---cards_comp_number--", cards_comp_number, type(cards_comp_number))
 
     def coloda(self):
@@ -73,11 +73,11 @@ class Deck:
         # for i in range(len(self.coloda_after)):
             # print(i, deck._cards[i], deck.list_num_card[i])
         if self.cards_pl not in self.coloda_after:
-            print('Совпадений не обнаружено')
+            print('Совпадений нет')
         if self.cards_comp not in self.coloda_after:
-            print('Совпадений не обнаружено')
+            print('Совпадений нет')
         if self.cards_pl not in self.cards_comp:
-            print('Раздача карт- все верно!!!')
+            print('Раздача карт выполнена')
 
     def turn(self):
         print('Ваши карты:\n{}'.format(self.cards_pl))
@@ -85,7 +85,7 @@ class Deck:
         self.player_hand_len = []
         for i in range(len(self.cards_pl)):  # выводим для удобства цифры (сколько карт в рукаве) для пользователя
             self.player_hand_len.append(i)
-        self.player_choice = int(input('Введите карту, которой желаете пойти: {}'.format(self.player_hand_len)))
+        self.player_choice = int(input('Ваш ход: {}'.format(self.player_hand_len)))
         self.player_cards.append(self.cards_pl[self.player_choice])
         self.cards_pl.remove(self.cards_pl[self.player_choice])
         print('Вы выбрали карту:\n{}'.format(self.player_cards ))
@@ -103,7 +103,7 @@ class Deck:
         if len(self.answer_cards) == 1:
             self.computer_move = self.answer_cards[0]
             self.cards_comp.remove(self.computer_move)
-            print('Компьютер бьет Вашу карту картой {}.'.format(self.computer_move))
+            print('Компьютер отбился картой {}.'.format(self.computer_move))
 
         if len(self.answer_cards) > 1:
             newl = []
@@ -125,10 +125,10 @@ class Deck:
             self.computer_move = newl[0]
             # self.computer_move = self.answer_cards[0]
             self.cards_comp.remove(self.computer_move)
-            print('Компьютер бьет Вашу карту картой {}.'.format(self.computer_move))
+            print('Компьютер отбился картой {}.'.format(self.computer_move))
 
         if len(self.answer_cards) == 0:
-            print('Компьютер берет.')
+            print('Компьютер забирает.')
             self.cards_comp.append(self.player_cards)
 
 
@@ -146,3 +146,4 @@ if __name__ == "__main__":
     deck.check_cards()
     deck.turn()
     deck.computer_answer()
+print ("Сыграем еще?")
